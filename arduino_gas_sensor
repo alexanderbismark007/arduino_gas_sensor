@@ -1,0 +1,18 @@
+int gasSensorPin = A0; // Conecta la salida analógica del sensor a la entrada analógica A0
+int thresholdValue = 100; // Ajusta este valor según sea necesario, es el umbral de sensibilidad
+
+void setup() {
+  Serial.begin(9600); // Inicia la comunicación serial a 9600 bps
+}
+
+void loop() {
+  int sensorValue = analogRead(gasSensorPin); // Lee el valor analógico del sensor
+  Serial.print("Valor del sensor: ");
+  Serial.println(sensorValue); // Imprime el valor leído en el monitor serial
+
+  if (sensorValue > thresholdValue) {
+    Serial.println("¡Advertencia! Se ha detectado un nivel peligroso de gas."); // Imprime un mensaje de advertencia si el valor supera el umbral
+    // Agrega aquí cualquier acción que quieras que se ejecute cuando se detecte gas
+  }
+  delay(1000); // Espera 1 segundo antes de la siguiente lectura
+}
